@@ -1,5 +1,170 @@
 <!doctype html>
+<html lang="es">
+<head>
 <meta charset="utf-8">
-<title>Jolu Games</title>
-<meta http-equiv="refresh" content="0; url=https://jobwinspain-hue.github.io/jolufishweb/">
-<a href="https://jobwinspain-hue.github.io/jolufishweb/">JoluFish</a>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jolu Games · Juegos hechos en familia, para todo el mundo</title>
+<meta name="description" content="Jolu Games: un padre y su hijo que crean juegos para móvil. JoluFish, el juego de pesca, y JoluClaw, la máquina de gancho.">
+<meta property="og:title" content="Jolu Games">
+<meta property="og:description" content="Juegos hechos en familia, para todo el mundo.">
+<meta property="og:image" content="https://jobwinspain-hue.github.io/img/jg-logo.webp">
+<link rel="icon" href="img/jg-icon.png"><link rel="apple-touch-icon" href="img/jg-icon.png">
+<style>
+@font-face{font-family:"Baloo 2";font-weight:800;font-display:swap;src:url(fonts/baloo-2-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Baloo 2";font-weight:600;font-display:swap;src:url(fonts/baloo-2-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:500;font-display:swap;src:url(fonts/figtree-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:700;font-display:swap;src:url(fonts/figtree-latin-700-normal.woff2) format("woff2")}
+:root{--ink:#10302d;--sea:#0b4d55;--sea2:#062a30;--gold:#ffc23d;--cream:#fdf6e9;--coral:#ff5a36;--red:#e2343c;--muted:#5d726f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;line-height:1.05}
+/* cabecera */
+.hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(120% 80% at 50% 0%,#14808a 0%,var(--sea) 50%,var(--sea2) 100%);padding:18px 0 90px}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:60px;background:var(--cream);clip-path:ellipse(70% 100% at 50% 100%)}
+.bub{position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+nav{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Baloo 2";font-weight:800;font-size:24px;text-decoration:none;letter-spacing:.5px}
+.brand b{color:var(--gold)}
+.lang{border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:6px 14px;font:700 14px Figtree;cursor:pointer}
+.hero-in{position:relative;z-index:2;text-align:center;padding-top:30px}
+.logo{width:clamp(200px,42vw,280px);height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));display:block;margin:0 auto 14px}
+.word{font-size:clamp(64px,13vw,128px);letter-spacing:1px;text-shadow:0 6px 0 #06343a,0 14px 40px rgba(0,0,0,.35)}
+.word .j{color:var(--gold);-webkit-text-stroke:2px #8a5a00;paint-order:stroke fill}
+.word .g{color:#7fd4ff;-webkit-text-stroke:2px #0d4f86;paint-order:stroke fill}
+.tag{font-family:"Baloo 2";font-weight:800;font-size:clamp(26px,4.4vw,40px);margin-top:6px}
+.tag b{color:var(--gold)}
+.sub{max-width:560px;margin:14px auto 0;font-size:18px;color:#d7f1ee}
+.cta{display:inline-flex;gap:10px;align-items:center;margin-top:28px;background:var(--coral);color:#fff;text-decoration:none;font:700 18px Figtree;padding:14px 28px;border-radius:999px;box-shadow:0 6px 0 #c23c1f}
+.cta:active{transform:translateY(3px);box-shadow:0 3px 0 #c23c1f}
+/* juegos */
+section{padding:56px 0}
+.kicker{font:700 13px Figtree;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center}
+h2{font-size:clamp(34px,5vw,48px);text-align:center;margin-top:4px}
+.games{display:grid;gap:28px;margin-top:34px}
+.game{display:grid;grid-template-columns:1fr;gap:22px;background:#fff;border-radius:28px;padding:26px;box-shadow:0 14px 40px rgba(16,48,45,.10);border:1px solid #efe4cf}
+.game .top{display:flex;gap:16px;align-items:center}
+.game .ic{width:84px;height:84px;border-radius:22px;box-shadow:0 8px 18px rgba(0,0,0,.18);flex:none}
+.game .lg{height:58px;width:auto;max-width:100%}
+.game .meta{font:700 13px Figtree;color:var(--muted);margin-top:4px}
+.game p{font-size:17px;margin-top:4px}
+.game ul{margin:12px 0 0;padding-left:20px}
+.game li{margin:4px 0}
+.shots{display:flex;gap:14px;justify-content:center}
+.shots img{width:46%;max-width:210px;border-radius:22px;border:7px solid #0a1d20;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:18px;text-decoration:none;font:700 17px Figtree;padding:13px 24px;border-radius:999px}
+.btn.play{background:var(--ink);color:#fff}
+.btn.play svg{width:20px;height:20px}
+.btn.soon{background:#f1ece2;color:var(--muted);cursor:default}
+.legal{display:block;margin-top:12px;font-size:14px;color:var(--muted)}
+.jf{border-top:6px solid #2aa6b0}.jf .lg{height:76px}.jc .lg{height:46px}.jc{border-top:6px solid var(--red)}
+@media(min-width:820px){.game{grid-template-columns:1.15fr .85fr;align-items:center;padding:36px}.game.jc .shots{order:-1}}
+/* nosotros */
+.about{background:#fff4dc}
+.about-in{display:grid;gap:26px;max-width:760px;margin:0 auto;text-align:center}
+.about p{font-size:18px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.pill{background:#fff;border:1px solid #efd9a8;border-radius:999px;padding:8px 16px;font:700 15px Figtree}
+/* contacto */
+.contact{text-align:center}
+.links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+.links a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:#fff;border:1px solid #efe4cf;border-radius:999px;padding:12px 20px;font:700 16px Figtree;box-shadow:0 6px 16px rgba(16,48,45,.06)}
+.links svg{width:20px;height:20px}
+footer{background:var(--sea2);color:#a9cbc7;font-size:14px;padding:30px 0;text-align:center}
+footer a{color:#d7f1ee}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div id="bubs"></div>
+  <div class="wrap">
+    <nav><a class="brand" href="#"><img src="img/jg-96.webp" alt="" width="40" height="40"><span><b>Jolu</b> Games</span></a><button class="lang" id="lang" aria-label="Change language">EN</button></nav>
+    <div class="hero-in">
+      <h1><img class="logo" src="img/jg-logo.webp" alt="Jolu Games" width="280" height="280"></h1>
+      <div class="tag" data-es="Juegos hechos <b>en familia</b>, para todo el mundo" data-en="Games made <b>as a family</b>, for the whole world"></div>
+      <p class="sub" data-es="Somos un padre y su hijo de 7 años que crean juntos juegos para móvil: sencillos, bonitos y para jugar en familia." data-en="We're a dad and his 7-year-old son making mobile games together: simple, beautiful and made to play as a family."></p>
+      <a class="cta" href="#juegos" data-es="Ver nuestros juegos ↓" data-en="See our games ↓"></a>
+    </div>
+  </div>
+</header>
+
+<section id="juegos">
+  <div class="wrap">
+    <div class="kicker" data-es="Nuestros juegos" data-en="Our games"></div>
+    <h2 data-es="Gratis, en español e inglés" data-en="Free, in English and Spanish"></h2>
+    <div class="games">
+      <article class="game jf">
+        <div>
+          <div class="top"><img class="ic" src="img/jf-icon.webp" alt="JoluFish"><div><img class="lg" src="img/jf-logo.webp" alt="JoluFish"><div class="meta" data-es="Pesca · Colección · Android" data-en="Fishing · Collecting · Android"></div></div></div>
+          <p style="margin-top:16px" data-es="Echa el cebo, lanza el anzuelo y gira la rueda para sacar más de 380 peces, del estanque al mundo prehistórico." data-en="Throw the bait, cast the hook and spin the reel to land over 380 fish, from the pond to the prehistoric world."></p>
+          <ul>
+            <li data-es="7 mundos: estanque, río, mar abierto, mar profundo, arrecife, Antártida y prehistórico." data-en="7 worlds: pond, river, open sea, deep sea, reef, Antarctica and prehistoric."></li>
+            <li data-es="Una pecera donde viven todos tus peces." data-en="An aquarium where all your fish live."></li>
+            <li data-es="Peces legendarios para presumir con tus amigos." data-en="Legendary fish to show off to your friends."></li>
+          </ul>
+          <a class="btn play" href="https://play.google.com/store/apps/details?id=com.jobwinspain.jolufish" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2.5v19l11-9.5z" opacity=".9"/><path d="M15 12l3.4-3 3 1.7c1 .6 1 2 0 2.6l-3 1.7z"/></svg><span data-es="Gratis en Google Play" data-en="Free on Google Play"></span></a>
+          <a class="legal" href="https://jobwinspain-hue.github.io/jolufishweb/" data-es="Web de JoluFish y privacidad" data-en="JoluFish website and privacy"></a>
+        </div>
+        <div class="shots"><img data-src-es="img/jf-es-1.webp" data-src-en="img/jf-en-1.webp" alt="JoluFish" loading="lazy"><img data-src-es="img/jf-es-2.webp" data-src-en="img/jf-en-2.webp" alt="JoluFish" loading="lazy"></div>
+      </article>
+
+      <article class="game jc">
+        <div>
+          <div class="top"><img class="ic" src="img/jc-icon.webp" alt="JoluClaw"><div><img class="lg" src="img/jc-logo.webp" alt="JoluClaw"><div class="meta" data-es="Máquina de gancho · Colección · Android" data-en="Claw machine · Collecting · Android"></div></div></div>
+          <p style="margin-top:16px" data-es="Mueve el gancho, bájalo en el momento justo y atrapa peluches, consolas, joyas de oro y mucho más." data-en="Move the claw, drop it at just the right moment and grab plushies, consoles, gold jewels and much more."></p>
+          <ul>
+            <li data-es="Más de 150 premios normales, épicos y legendarios." data-en="Over 150 normal, epic and legendary prizes."></li>
+            <li data-es="Salones para decorar con tus premios." data-en="Rooms to decorate with your prizes."></li>
+            <li data-es="Un zoo con 100 animales únicos." data-en="A zoo with 100 unique animals."></li>
+          </ul>
+          <span class="btn soon" data-es="Próximamente en Google Play" data-en="Coming soon to Google Play"></span>
+          <a class="legal" href="https://jobwinspain-hue.github.io/joluclawweb/" data-es="Web de JoluClaw y privacidad" data-en="JoluClaw website and privacy"></a>
+        </div>
+        <div class="shots"><img data-src-es="img/jc-es-1.webp" data-src-en="img/jc-en-1.webp" alt="JoluClaw" loading="lazy"><img data-src-es="img/jc-es-2.webp" data-src-en="img/jc-en-2.webp" alt="JoluClaw" loading="lazy"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="nosotros">
+  <div class="wrap about-in">
+    <div><div class="kicker" data-es="Quiénes somos" data-en="About us"></div><h2 data-es="Un padre, un hijo y muchas ideas" data-en="A dad, a son and lots of ideas"></h2></div>
+    <p data-es="Jolu Games somos mi hijo y yo. Hacemos los juegos que nos gustaría jugar a nosotros, y ninguno sale sin que lo pruebe primero el jefe de la casa." data-en="Jolu Games is my son and me. We make the games we'd love to play ourselves, and none goes out before the little boss has tested it."></p>
+    <div class="pills"><span class="pill" data-es="🎣 Hecho en España" data-en="🎣 Made in Spain"></span><span class="pill" data-es="👨‍👦 Probado por un niño de 7 años" data-en="👨‍👦 Tested by a 7-year-old"></span><span class="pill" data-es="🆓 Gratis para jugar" data-en="🆓 Free to play"></span></div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="kicker" data-es="Contacto" data-en="Contact"></div>
+    <h2 data-es="¿Hablamos?" data-en="Get in touch"></h2>
+    <div class="links">
+      <a href="mailto:jobwinspain@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>jobwinspain@gmail.com</a>
+      <a href="https://www.instagram.com/jolugamesoficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@jolugamesoficial</a>
+      <a href="https://www.tiktok.com/@jolugames.oficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.3 1.8 3.9 4 4.1v3.2c-1.5 0-2.8-.4-4-1.2v6.1A6 6 0 1 1 10 9.2v3.3a2.8 2.8 0 1 0 2.8 2.8V3z"/></svg>@jolugames.oficial</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© <span id="y"></span> Jolu Games · <a href="https://jobwinspain-hue.github.io/jolufishweb/privacidad.html" data-es="Privacidad JoluFish" data-en="JoluFish privacy"></a> · <a href="https://jobwinspain-hue.github.io/joluclawweb/privacidad.html" data-es="Privacidad JoluClaw" data-en="JoluClaw privacy"></a></div></footer>
+
+<script>
+(function(){
+  var h='';for(var i=0;i<18;i++){var x=(i*397)%100,y=(i*733)%100,r=14+(i*37)%60;h+='<div class="bub" style="left:'+x+'%;top:'+y+'%;width:'+r+'px;height:'+r+'px"></div>';}
+  document.getElementById('bubs').innerHTML=h;
+  document.getElementById('y').textContent=new Date().getFullYear();
+  var lang;try{lang=localStorage.getItem('jg_lang')}catch(e){}
+  if(!lang) lang=(navigator.language||'es').slice(0,2)==='es'?'es':'en';
+  function apply(l){lang=l;document.documentElement.lang=l;
+    document.querySelectorAll('[data-es]').forEach(function(el){el.innerHTML=el.getAttribute('data-'+l);});
+    document.querySelectorAll('[data-src-es]').forEach(function(el){el.src=el.getAttribute('data-src-'+l);});
+    document.getElementById('lang').textContent=l==='es'?'EN':'ES';
+    try{localStorage.setItem('jg_lang',l)}catch(e){}}
+  document.getElementById('lang').onclick=function(){apply(lang==='es'?'en':'es')};
+  apply(lang);
+})();
+</script>
+</body>
+</html>
