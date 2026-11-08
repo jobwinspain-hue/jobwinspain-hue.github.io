@@ -28,6 +28,8 @@ h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;line-height:
 nav{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
 .brand{display:flex;align-items:center;gap:10px;font-family:"Baloo 2";font-weight:800;font-size:24px;text-decoration:none;letter-spacing:.5px}
 .brand b{color:var(--gold)}
+.navr{display:flex;align-items:center;gap:14px}.navl{color:#fff;font:700 15px Figtree;text-decoration:none;border-bottom:2px solid var(--gold)}
+.btn.col{background:#fff;border:2px solid var(--ink);color:var(--ink);margin-left:6px}
 .lang{border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:6px 14px;font:700 14px Figtree;cursor:pointer}
 .hero-in{position:relative;z-index:2;text-align:center;padding-top:30px}
 .logo{width:clamp(200px,42vw,280px);height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));display:block;margin:0 auto 14px}
@@ -80,7 +82,7 @@ footer a{color:#d7f1ee}
 <header class="hero">
   <div id="bubs"></div>
   <div class="wrap">
-    <nav><a class="brand" href="#"><img src="img/jg-96.webp" alt="" width="40" height="40"><span><b>Jolu</b> Games</span></a><button class="lang" id="lang" aria-label="Change language">EN</button></nav>
+    <nav><a class="brand" href="#"><img src="img/jg-96.webp" alt="" width="40" height="40"><span><b>Jolu</b> Games</span></a><span class="navr"><a class="navl" href="coleccion.html" data-es="Colección" data-en="Collection"></a><button class="lang" id="lang" aria-label="Change language">EN</button></span></nav>
     <div class="hero-in">
       <h1><img class="logo" src="img/jg-logo.webp" alt="Jolu Games" width="280" height="280"></h1>
       <div class="tag" data-es="Juegos hechos <b>con cariño</b>, para todo el mundo" data-en="Games made <b>with love</b>, for the whole world"></div>
@@ -105,6 +107,7 @@ footer a{color:#d7f1ee}
             <li data-es="Peces legendarios para presumir con tus amigos." data-en="Legendary fish to show off to your friends."></li>
           </ul>
           <a class="btn play" href="https://play.google.com/store/apps/details?id=com.jobwinspain.jolufish" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2.5v19l11-9.5z" opacity=".9"/><path d="M15 12l3.4-3 3 1.7c1 .6 1 2 0 2.6l-3 1.7z"/></svg><span data-es="Gratis en Google Play" data-en="Free on Google Play"></span></a>
+          <a class="btn col" href="coleccion.html#jolufish" data-es="Ver los 382 peces →" data-en="See all 382 fish →"></a>
           <a class="legal" href="https://jobwinspain-hue.github.io/jolufishweb/" data-es="Web de JoluFish y privacidad" data-en="JoluFish website and privacy"></a>
         </div>
         <div class="shots"><img data-src-es="img/jf-es-1.webp" data-src-en="img/jf-en-1.webp" alt="JoluFish" loading="lazy"><img data-src-es="img/jf-es-2.webp" data-src-en="img/jf-en-2.webp" alt="JoluFish" loading="lazy"></div>
@@ -120,6 +123,7 @@ footer a{color:#d7f1ee}
             <li data-es="Un zoo con 100 animales únicos." data-en="A zoo with 100 unique animals."></li>
           </ul>
           <span class="btn soon" data-es="Próximamente en Google Play" data-en="Coming soon to Google Play"></span>
+          <a class="btn col" href="coleccion.html#joluclaw" data-es="Ver premios y animales →" data-en="See prizes and animals →"></a>
           <a class="legal" href="https://jobwinspain-hue.github.io/joluclawweb/" data-es="Web de JoluClaw y privacidad" data-en="JoluClaw website and privacy"></a>
         </div>
         <div class="shots"><img data-src-es="img/jc-es-1.webp" data-src-en="img/jc-en-1.webp" alt="JoluClaw" loading="lazy"><img data-src-es="img/jc-es-2.webp" data-src-en="img/jc-en-2.webp" alt="JoluClaw" loading="lazy"></div>

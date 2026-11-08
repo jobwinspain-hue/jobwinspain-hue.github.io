@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Colección · Jolu Games</title>
+<meta name="description" content="Todos los peces de JoluFish y todos los premios y animales de JoluClaw, numerados y por categorías.">
+<link rel="icon" href="img/jg-icon.png">
+<style>
+@font-face{font-family:"Baloo 2";font-weight:800;font-display:swap;src:url(fonts/baloo-2-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:500;font-display:swap;src:url(fonts/figtree-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:700;font-display:swap;src:url(fonts/figtree-latin-700-normal.woff2) format("woff2")}
+:root{--ink:#10302d;--sea:#0b4d55;--sea2:#062a30;--gold:#ffc23d;--cream:#fdf6e9;--coral:#ff5a36;--muted:#5d726f;--line:#efe4cf}
+*{box-sizing:border-box;margin:0}
+body{font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.45}
+button{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:800;line-height:1.05}
+.top{background:radial-gradient(120% 90% at 50% 0%,#14808a 0%,var(--sea) 55%,var(--sea2) 100%);color:#fff;padding:14px 0 26px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Baloo 2";font-weight:800;font-size:22px;text-decoration:none;color:#fff}
+.brand b{color:var(--gold)}
+.lang{border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:6px 14px;font:700 14px Figtree;cursor:pointer}
+.top h1{font-size:clamp(38px,6vw,56px);margin-top:22px;text-align:center;text-shadow:0 5px 0 #06343a}
+.top p{text-align:center;color:#d7f1ee;margin-top:4px}
+.gtabs{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.gtab{display:flex;align-items:center;gap:10px;border:0;cursor:pointer;background:rgba(255,255,255,.12);color:#fff;border-radius:18px;padding:8px 18px 8px 8px;font:700 16px Figtree}
+.gtab img{width:44px;height:44px;border-radius:12px}
+.gtab small{display:block;font:500 13px Figtree;opacity:.8}
+.gtab.on{background:#fff;color:var(--ink);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.bar{position:sticky;top:0;z-index:5;background:rgba(253,246,233,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:12px 0}
+.row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.row::-webkit-scrollbar{display:none}
+.row+.row{margin-top:8px}
+.chip{flex:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:700 14px Figtree;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:0}
+.search{flex:1;min-width:160px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font:500 15px Figtree;outline:none}
+.count{font:700 13px Figtree;color:var(--muted);margin:16px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding-bottom:50px}
+.card{position:relative;border:0;background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;text-align:left;box-shadow:0 6px 16px rgba(16,48,45,.08);border:1px solid var(--line);transition:transform .12s}
+.card:hover{transform:translateY(-2px)}
+.card .art{aspect-ratio:6/4;display:flex;align-items:center;justify-content:center;padding:10px}
+.card .art img{max-width:100%;max-height:100%;object-fit:contain}
+.card.claw .art{aspect-ratio:6/5;padding:0}
+.card.claw .art img{width:100%;height:100%;object-fit:cover}
+.card .num{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.45);color:#fff;font:700 12px Figtree;border-radius:999px;padding:2px 8px}
+.card .nm{padding:8px 10px 10px;font:700 14px Figtree;line-height:1.2;min-height:44px}
+.card .rb{height:5px}
+.card.leg{box-shadow:0 0 0 2px var(--gold),0 8px 20px rgba(255,194,61,.35)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+/* ficha */
+.ov{position:fixed;inset:0;background:rgba(6,42,48,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.ov[hidden]{display:none}
+.det{background:#fff;border-radius:26px;max-width:440px;width:100%;max-height:92vh;overflow:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.det .art{aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;padding:20px}
+.det .art img{max-width:100%;max-height:100%}
+.det.claw .art{padding:0;aspect-ratio:6/5}
+.det.claw .art img{width:100%;height:100%;object-fit:cover}
+.x{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;cursor:pointer}
+.db{padding:18px 22px 22px}
+.dn{font:700 13px Figtree;color:var(--muted)}
+.det h3{font-size:32px;margin-top:2px}
+.pill{display:inline-block;border-radius:999px;padding:4px 12px;font:800 12px Figtree;letter-spacing:.06em;text-transform:uppercase;color:#10201e;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.st{background:#f6efe1;border-radius:14px;padding:8px 10px;text-align:center}
+.st b{display:block;font:800 18px "Baloo 2"}
+.st span{font:700 11px Figtree;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.fact{margin-top:14px;background:#eaf6f3;border-radius:16px;padding:12px 14px;font-size:15px}
+.fact b{display:block;font:800 13px Figtree;color:#1f7a75;margin-bottom:2px}
+.go{display:flex;justify-content:center;margin-top:16px;text-decoration:none;background:var(--coral);color:#fff;font:700 16px Figtree;padding:12px 18px;border-radius:999px;box-shadow:0 5px 0 #c23c1f}
+.go.soon{background:#f1ece2;color:var(--muted);box-shadow:none}
+footer{background:var(--sea2);color:#a9cbc7;font-size:14px;padding:26px 0;text-align:center}
+footer a{color:#d7f1ee}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <nav><a class="brand" href="./"><img src="img/jg-96.webp" alt="" width="38" height="38"><span><b>Jolu</b> Games</span></a><button class="lang" id="lang">EN</button></nav>
+    <h1 data-es="Colección" data-en="Collection"></h1>
+    <p data-es="Todo lo que puedes conseguir en nuestros juegos" data-en="Everything you can collect in our games"></p>
+    <div class="gtabs">
+      <button class="gtab" data-g="jolufish"><img src="img/jf-icon.webp" alt=""><span>JoluFish<small data-es="382 peces" data-en="382 fish"></small></span></button>
+      <button class="gtab" data-g="joluclaw"><img src="img/jc-icon.webp" alt=""><span>JoluClaw<small data-es="177 premios · 100 animales" data-en="177 prizes · 100 animals"></small></span></button>
+    </div>
+  </div>
+</header>
+<div class="bar"><div class="wrap">
+  <div class="row" id="r1"></div>
+  <div class="row" id="r2"></div>
+</div></div>
+<main class="wrap">
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+</main>
+<div class="ov" id="ov" hidden><div class="det" id="det"></div></div>
+<footer><div class="wrap">© <span id="y"></span> Jolu Games · <a href="./" data-es="Volver al inicio" data-en="Back to home"></a></div></footer>
+<script>
+(function(){
+var L='es';try{L=localStorage.getItem('jg_lang')||''}catch(e){} if(!L) L=(navigator.language||'es').slice(0,2)==='es'?'es':'en';
+var PLAY_JF='https://play.google.com/store/apps/details?id=com.jobwinspain.jolufish';
+var ZN={es:['Estanque','Río','Mar abierto','Mar profundo','Arrecife tropical','Antártida','Mundo prehistórico'],en:['Pond','River','Open Sea','Deep Sea','Tropical Reef','Antarctica','Prehistoric World']};
+var ZBG=[['#bfe9e5','#7fc9c2'],['#cfe6d9','#93c3a9'],['#cfe7f8','#8cc4ec'],['#b9c6dd','#7d8fb3'],['#cdf4f2','#87dde0'],['#e2eef5','#a9c9da'],['#dfe8d2','#a9c19a']];
+var TR={es:['Común','Poco común','Raro','Épico','Legendario'],en:['Common','Uncommon','Rare','Epic','Legendary']};
+var TC=['#c3cdca','#5fd27c','#4aa3ff','#b57bff','#ffc23d'];
+var CATS=[['peluche','Peluches','Plushies'],['tech','Tecnología','Tech'],['sport','Deporte','Sport'],['joya','Joyas','Jewels'],['avatar','Muñecos','Dolls'],['comida','Comida','Food'],['salon','Salón','Living room'],['ropa','Ropa','Clothes'],['vehiculo','Vehículos','Vehicles']];
+var CR={n:['Normal','Common','#b9b09c'],e:['Épico','Epic','#9b6bff'],l:['Legendario','Legendary','#ffbe2e'],z:['JoluZoo','JoluZoo','#57cc99']};
+var T=function(es,en){return L==='es'?es:en};
+var JF=null,JC=null,st={g:'jolufish',z:-1,t:-1,q:'',sub:'prem',c:'',r:''};
+var $=function(id){return document.getElementById(id)};
+function load(u){return fetch(u).then(function(r){return r.json()})}
+function pad(n,k){n=String(n);while(n.length<k)n='0'+n;return n}
+function chip(lbl,on,fn,dot){var b=document.createElement('button');b.className='chip'+(on?' on':'');b.innerHTML=(dot?'<i style="background:'+dot+'"></i>':'')+lbl;b.onclick=fn;return b}
+function bars(){
+  var r1=$('r1'),r2=$('r2');r1.innerHTML='';r2.innerHTML='';
+  if(st.g==='jolufish'){
+    r1.appendChild(chip(T('Todos los mundos','All worlds'),st.z<0,function(){st.z=-1;draw()}));
+    ZN[L].forEach(function(z,i){r1.appendChild(chip(z,st.z===i,function(){st.z=i;draw()}))});
+    var s=document.createElement('input');s.className='search';s.placeholder=T('Buscar pez…','Search fish…');s.value=st.q;s.oninput=function(){st.q=s.value;grid()};r2.appendChild(s);
+    r2.appendChild(chip(T('Todas','All'),st.t<0,function(){st.t=-1;draw()}));
+    TR[L].forEach(function(t,i){r2.appendChild(chip(t,st.t===i,function(){st.t=i;draw()},TC[i]))});
+  }else{
+    r1.appendChild(chip('🎁 '+T('Premios','Prizes')+' (177)',st.sub==='prem',function(){st.sub='prem';st.c='';st.r='';draw()}));
+    r1.appendChild(chip('🦁 JoluZoo (100)',st.sub==='zoo',function(){st.sub='zoo';draw()}));
+    var s2=document.createElement('input');s2.className='search';s2.placeholder=T('Buscar…','Search…');s2.value=st.q;s2.oninput=function(){st.q=s2.value;grid()};r2.appendChild(s2);
+    if(st.sub==='prem'){
+      r1.appendChild(chip(T('Todas','All'),!st.c,function(){st.c='';draw()}));
+      CATS.forEach(function(c){r1.appendChild(chip(T(c[1],c[2]),st.c===c[0],function(){st.c=c[0];draw()}))});
+      r2.appendChild(chip(T('Todas','All'),!st.r,function(){st.r='';draw()}));
+      ['n','e','l'].forEach(function(r){r2.appendChild(chip(T(CR[r][0],CR[r][1]),st.r===r,function(){st.r=r;draw()},CR[r][2]))});
+    }
+  }
+}
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+function grid(){
+  var g=$('grid');g.innerHTML='';var q=norm(st.q||''),list,tot;
+  if(st.g==='jolufish'){
+    tot=JF.length;list=JF.filter(function(f){return (st.z<0||f.z===st.z)&&(st.t<0||f.t===st.t)&&(!q||norm(f.es+' '+f.en).indexOf(q)>=0||String(f.n)===q)});
+    list.forEach(function(f){var b=document.createElement('button');b.className='card'+(f.t===4?' leg':'');var bg=ZBG[f.z];
+      b.innerHTML='<div class="art" style="background:linear-gradient(160deg,'+bg[0]+','+bg[1]+')"><img loading="lazy" src="col/jf/'+pad(f.n,3)+'.webp" alt=""></div><span class="num">#'+pad(f.n,3)+'</span><div class="nm">'+(L==='es'?f.es:f.en)+'</div><div class="rb" style="background:'+TC[f.t]+'"></div>';
+      b.onclick=function(){openF(f)};g.appendChild(b)});
+  }else{
+    var src=JC.filter(function(i){return st.sub==='zoo'?i.c==='zoo':i.c!=='zoo'});tot=src.length;
+    list=src.filter(function(i){return (!st.c||i.c===st.c)&&(!st.r||i.r===st.r)&&(!q||norm(i.es+' '+i.en).indexOf(q)>=0)});
+    list.forEach(function(i){var b=document.createElement('button');b.className='card claw'+(i.r==='l'?' leg':'');
+      b.innerHTML='<div class="art"><img loading="lazy" src="col/jc/'+i.id+'.webp" alt=""></div><span class="num">'+(i.c==='zoo'?'Z':'#')+pad(i.n,3)+'</span><div class="nm">'+(L==='es'?i.es:i.en)+'</div><div class="rb" style="background:'+CR[i.r][2]+'"></div>';
+      b.onclick=function(){openC(i)};g.appendChild(b)});
+  }
+  $('count').textContent=T('Mostrando ','Showing ')+list.length+T(' de ',' of ')+tot;
+  if(!list.length) g.innerHTML='<div class="empty">'+T('No hay nada con esos filtros.','Nothing matches those filters.')+'</div>';
+}
+function mm(v){return (v/100).toLocaleString(L,{maximumFractionDigits:2})}
+function rng(a,b){return b<100?a+'–'+b+' cm':a>=100?mm(a)+'–'+mm(b)+' m':a+' cm – '+mm(b)+' m'}
+function openF(f){var bg=ZBG[f.z],d=$('det');d.className='det';
+  d.innerHTML='<button class="x" aria-label="Cerrar">×</button><div class="art" style="background:linear-gradient(160deg,'+bg[0]+','+bg[1]+')"><img src="col/jf/'+pad(f.n,3)+'.webp" alt=""></div><div class="db"><div class="dn">#'+pad(f.n,3)+' · '+ZN[L][f.z]+'</div><h3>'+(L==='es'?f.es:f.en)+'</h3><span class="pill" style="background:'+TC[f.t]+'">'+TR[L][f.t]+'</span>'+
+  '<div class="stats"><div class="st"><b>'+rng(f.cm[0],f.cm[1])+'</b><span>'+T('Tamaño','Size')+'</span></div><div class="st"><b>'+(L==='es'?f.kg:f.kg.replace(',','.'))+'</b><span>'+T('Peso medio','Avg weight')+'</span></div><div class="st"><b>'+f.p+'</b><span>'+T('Puntos','Points')+'</span></div></div>'+
+  (f.fe?'<div class="fact"><b>'+T('¿Sabías que…?','Did you know?')+'</b>'+(L==='es'?f.fe:f.fn)+'</div>':'')+
+  '<a class="go" href="'+PLAY_JF+'" target="_blank" rel="noopener">'+T('Pescarlo en JoluFish','Catch it in JoluFish')+'</a></div>';show()}
+function openC(i){var d=$('det');d.className='det claw';var cat=CATS.filter(function(c){return c[0]===i.c})[0];
+  d.innerHTML='<button class="x" aria-label="Cerrar">×</button><div class="art"><img src="col/jc/'+i.id+'.webp" alt=""></div><div class="db"><div class="dn">'+(i.c==='zoo'?'Z':'#')+pad(i.n,3)+' · '+(i.c==='zoo'?'JoluZoo':T(cat[1],cat[2]))+'</div><h3>'+(L==='es'?i.es:i.en)+'</h3><span class="pill" style="background:'+CR[i.r][2]+'">'+T(CR[i.r][0],CR[i.r][1])+'</span>'+
+  '<div class="stats" style="grid-template-columns:1fr 1fr"><div class="st"><b>'+(i.c==='zoo'?T('Jolunicos','Jolunicos'):'JoluClaw')+'</b><span>'+T('Máquina','Machine')+'</span></div><div class="st"><b>+'+i.p+'</b><span>'+T('Puntos','Points')+'</span></div></div>'+
+  '<span class="go soon">'+T('JoluClaw · Próximamente en Google Play','JoluClaw · Coming soon to Google Play')+'</span></div>';show()}
+function show(){$('ov').hidden=false;$('det').querySelector('.x').onclick=hide}
+function hide(){$('ov').hidden=true}
+$('ov').onclick=function(e){if(e.target===$('ov'))hide()};document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
+function texts(){document.documentElement.lang=L;document.querySelectorAll('[data-es]').forEach(function(el){el.innerHTML=el.getAttribute('data-'+L)});$('lang').textContent=L==='es'?'EN':'ES'}
+function draw(){document.querySelectorAll('.gtab').forEach(function(b){b.classList.toggle('on',b.dataset.g===st.g)});bars();grid()}
+document.querySelectorAll('.gtab').forEach(function(b){b.onclick=function(){st.g=b.dataset.g;st.q='';history.replaceState(null,'','#'+st.g);draw()}});
+$('lang').onclick=function(){L=L==='es'?'en':'es';try{localStorage.setItem('jg_lang',L)}catch(e){}texts();draw()};
+$('y').textContent=new Date().getFullYear();
+var h=(location.hash||'').slice(1);if(h==='joluclaw'||h==='jolufish')st.g=h;if(h==='joluzoo'){st.g='joluclaw';st.sub='zoo'}
+texts();
+Promise.all([load('col/jolufish.json'),load('col/joluclaw.json')]).then(function(r){JF=r[0];JC=r[1];draw()});
+})();
+</script>
+</body>
+</html>
